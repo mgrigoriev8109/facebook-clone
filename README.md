@@ -51,27 +51,27 @@ Log in as a test user using the following credentials:
 ### Planning out the data architecture.
 
 User
-has_one: :profile_picture
-has_many: :friendships
-has_many: :friendship_requests
-has_many: :posts
-has_many: :comments
-has_many: :notifications
+has_one :profile_picture
+has_many :friendships
+has_many :friendship_requests
+has_many :posts
+has_many :comments
+has_many :notifications
 
 #schema
 t.string :username
 
 ---
 #model ProfilePicture
-belongs_to: :user
+belongs_to :user
 
 #schema
 t.belongs_to :user
 
 ---
 #model Friendship
-belongs_to: :friendship_provider, class_name="User"
-belongs_to: :friendship_recipient, class_name="User"
+belongs_to :friendship_provider, class_name="User"
+belongs_to :friendship_recipient, class_name="User"
 
 #schema
 t.belongs_to :friendship_provider
@@ -79,8 +79,8 @@ t.belongs_to :friendship_recipient
 
 ---
 #model FriendshipRequest
-belongs_to: :request_provider, class_name="User"
-belongs_to: :request_recipient, class_name="User"
+belongs_to :request_provider, class_name="User"
+belongs_to :request_recipient, class_name="User"
 
 #schema
 t.belongs_to :request_provider
@@ -88,9 +88,9 @@ t.belongs_to :request_recipient
 
 ---
 #model Post
-belongs_to: :user
-has_many: :comments
-has_many: :likes, as: :liked_content
+belongs_to :user
+has_many :comments
+has_many :likes, as: :liked_content
 
 #schema
 t.belongs_to :user
@@ -98,8 +98,8 @@ t.text :body
 
 ---
 #model Comment
-belongs_to: :post
-has_many: :likes, as: :liked_content
+belongs_to :post
+has_many :likes, as: :liked_content
 
 #schema
 t.belongs_to :post
@@ -107,7 +107,7 @@ t.text :body
 
 ---
 #model Notification
-belongs_to: :user
+belongs_to :user
 
 #schema
 t.belongs_to :user
@@ -115,7 +115,7 @@ t.boolean :notification_viewed
 
 ---
 #model Like
-belongs_to: :liked_content, polymorphic: true
+belongs_to :liked_content, polymorphic: true
 
 #schema
 t.references :liked_content, polymorphic: true
