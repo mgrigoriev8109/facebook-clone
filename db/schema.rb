@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_154630) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_185443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friendships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "friendship_provider_id"
+    t.bigint "friendship_recipient_id"
+    t.index ["friendship_provider_id"], name: "index_friendships_on_friendship_provider_id"
+    t.index ["friendship_recipient_id"], name: "index_friendships_on_friendship_recipient_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
