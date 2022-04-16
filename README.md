@@ -31,24 +31,26 @@ Log in as a test user using the following credentials:
 
 **Posting, Commenting, Notifications, Liking**
 - View what your friends have to say on your news feed
-- Post text, url, or images from your profile page
+- Create posts from your profile page
 - Comment on posts, or edit/delete comments
-- Like comments or posts
+- Like and Unlike comments or posts
 - Receive notifications when users like or respond to your posts/comments
-
-**Messaging**
-- Send real-time chat messages to friends through Action Cable integrated WebSockets
 
 ### Development Features
 - Utilize Turbo to increase performance 
-- Utilize Stimulus 
 - Bulma used for styling
 - TDD and comprehensive integration testing performed through the Capybara gem, with Guard gem running in the background to provide continuous test feedback
 - PostgreSQL used in both development and production
 
 ### Reflections
 
-### Planning out the data architecture.
+### Software Development Life Cycle
+
+#### Gathering and Analysis of Requirements
+
+I put myself in the shoes of the user, and thought about every single aspect of the social media app Facebook that I would use. I listed them in the above section, *Using This App*. Next I thought about these from the perspective of a developer in regards to which gems and which programming concepts would assist me in implementing these features. 
+
+#### Design
 
 User
 has_one :profile_picture
@@ -122,6 +124,40 @@ t.references :liked_content, polymorphic: true
 
 ---
 
+#### Implementation
 
+- Make sure Guard is functional and tests running continuously
+- TDD Creating a Friendship (make failing test)
+- Create button in User Profile that creates friendship when submitted
+- Test that this form button creates Friendship
+- TDD Deleting a Friendship (make failing test)
+- Test that this button deletes Friendship
+- TDD Creating a FriendshipRequest (make failing test)
+- Modify button to send FriendshipRequest
+- Make a View for FriendshipRequests
+- Test that this form button accepts FriendshipRequest
+- TDD Deleting a FriendshipRequest (make failing test)`
+- Test that this button deletes a FriendshipRequest
+- Integration test full Friendship feature: Log in as request_sender, view User Index, click User Profile, submit friendship request, log out, log in as request_recipient, accept request, verify friendship in User Profile View
 
+- TDD Creation a Notification upon receiving a FriendshipRequest, and upon creation of a Friendship
 
+- Use similar process to TDD creating a text-only Post
+- View all friend posts in News Feed, and personal posts in User Profile
+- TDD deleting a post 
+- TDD creating a comment
+- TDD creating notification if friend comments on a user profile
+- TDD deleting a comment
+- Integration test full Post / Nested comment feature: log in as User, make a Post, make a second post, delete it, make three posts, delete the last one, test the News Feed output
+
+- TDD creating a Post Liking and Comment Liking
+- TDD creating notification if friend likes a user post or comment
+- TDD deleting a Post Liking or Comment Liking
+
+- Create end-to-end test that uses every feature in the app
+
+- Implement profile pictures
+- Implement OmniAuth for login
+- Implement mailer
+- Style using Bulma
+- Utilize Turbo to increase performance
