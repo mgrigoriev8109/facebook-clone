@@ -126,6 +126,10 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
+- Root page should be post index ("News Feed")
+- User should be able to log in, and create post
+- Switch root page to log-in if no one is logged in
+
 - Make sure Guard is functional and tests running continuously
 - TDD Creating a Friendship (make failing test)
 - Create button in User Profile that creates friendship when submitted
