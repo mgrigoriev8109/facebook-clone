@@ -69,6 +69,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload', '~> 2.5', require: false
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
