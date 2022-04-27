@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @posts = Post.all
+    #modify something to test guard
   end
 
   def show

@@ -6,7 +6,7 @@ RSpec.describe "Post Integration Tests", type: :system do
     visit new_post_path
   end
 
-  scenario 'valid inputs' do
+  it 'valid inputs' do
     fill_in 'Body', with: 'Here is a test post.'
     click_on 'Submit Post'
 
