@@ -126,20 +126,27 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- TDD Creating a Friendship (make failing test)
-- Create button in User Profile that creates friendship when submitted
-- Test that this form button creates Friendship
-- TDD Deleting a Friendship (make failing test)
-- Test that this button deletes Friendship
-- TDD Creating a FriendshipRequest (make failing test)
-- Modify button to send FriendshipRequest
-- Make a View for FriendshipRequests
-- Test that this form button accepts FriendshipRequest
-- TDD Deleting a FriendshipRequest (make failing test)`
-- Test that this button deletes a FriendshipRequest
-- Integration test full Friendship feature: Log in as request_sender, view User Index, click User Profile, submit friendship request, log out, log in as request_recipient, accept request, verify friendship in User Profile View
+- Make root page user account
+- Add form for post creation in user account, which reloads the page and has content 
+- make sure test passes
 
-- TDD Creation a Notification upon receiving a FriendshipRequest, and upon creation of a Friendship
+- Write failing test for FriendshipRequest: log in, visit second user page, click Send Friendship Request button, visit FriendshipRequests view, expect it to have content of user1
+
+- make 'Send Friendship Request' button in user profile
+- make Post Creation form disappear if this isn't the currently logged in user's profile
+- make FriendshipRequest view
+- Create second user in FactoryBot
+- make the test pass
+
+- Write failing test for Friendship acceptance
+- Make a button for 'Accept Friendship' in FriendshipRequest view
+- make Friendship view
+- TDD Deleting a Friendship
+- TDD Deleting a FriendshipRequest
+
+- End-to-end test full Friendship feature
+
+- TDD Notification creation upon receiving a FriendshipRequest, and upon creation of a Friendship
 
 - Use similar process to TDD creating a text-only Post
 - View all friend posts in News Feed, and personal posts in User Profile
