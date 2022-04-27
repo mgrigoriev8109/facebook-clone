@@ -126,7 +126,6 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Make sure Guard is functional and tests running continuously
 - TDD Creating a Friendship (make failing test)
 - Create button in User Profile that creates friendship when submitted
 - Test that this form button creates Friendship
