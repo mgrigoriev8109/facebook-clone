@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Post Integration Tests", type: :system do
   before do
-    login_user
-    visit new_post_path
+    login_as(FactoryBot.create(:user))
+    visit posts_path
   end
 
   it 'valid inputs' do
