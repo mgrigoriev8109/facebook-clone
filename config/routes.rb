@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
   resources :posts
 
-  root "users#show"
+  root "posts#index"
 
 end
