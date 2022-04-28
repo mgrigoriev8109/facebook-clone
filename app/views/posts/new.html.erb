@@ -1,2 +1,22 @@
 <h1>News Feed</h1>
-<p>Moving forward, this page will contain all recent personal and Friends' posts<p>
+
+<p>Make a post!</p>
+<%= form_with model: @post do |form| %>
+  <div>
+    <%= form.text_field :body %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<ul>
+  <% unless @posts.nil? %>
+    <% @posts.each do |post| %>
+      <li>
+        <%= post.body %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

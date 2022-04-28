@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
     @posts = Post.all
-    #modify something to test guard
   end
 
   def show
@@ -10,15 +9,18 @@ class PostsController < ApplicationController
   end
 
   def new
+    @posts = Post.all
     @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to @post
+      flash[:success] = "Your post has been created!"
+      redirect_to new_post_path
     else
+      flash[:alert] = "Your new post couldn't be created. Please check the form."
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,6 +48,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:article).permit(:title, :body)
+      params.require(:post).permit(:body)
     end
 end
