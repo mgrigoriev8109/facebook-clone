@@ -15,7 +15,8 @@
   <% unless @posts.nil? %>
     <% @posts.each do |post| %>
       <li>
-        <%= post.body %>
+        <p>Author: <%= User.find(post.user_id).username %></p>
+        <p>Post: <%= post.body %></p>
       </li>
     <% end %>
   <% end %>
