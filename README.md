@@ -126,10 +126,6 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Make root page user account
-- Add form for post creation in user account, which reloads the page and has content 
-- make sure test passes
-
 - Write failing test for FriendshipRequest: log in, visit second user page, click Send Friendship Request button, visit FriendshipRequests view, expect it to have content of user1
 
 - make 'Send Friendship Request' button in user profile
