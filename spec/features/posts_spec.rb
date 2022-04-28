@@ -5,7 +5,7 @@ RSpec.describe "Post Integration Tests", type: :system do
     login_as(FactoryBot.create(:user))
   end
 
-  it 'valid inputs' do
+  it 'Logging in and successfully creating a post with valid input' do
     visit root_path
     fill_in 'post[body]', with: 'Here is a test post.'
     click_on 'Create Post'

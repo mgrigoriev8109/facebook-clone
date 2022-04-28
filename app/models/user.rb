@@ -6,6 +6,4 @@ class User < ApplicationRecord
   
   #has_many :friendships
   has_many :posts
-
-  validates :user_id, presence: true
 end
