@@ -18,10 +18,10 @@ class FriendshipRequestsController < ApplicationController
 
     if @friendship_request.save
       flash[:success] = "Your friend request has been sent!"
-      redirect_to new_post_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Your friend request could not be sent. Please check the form."
-      render :new, status: :unprocessable_entity
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -34,6 +34,6 @@ class FriendshipRequestsController < ApplicationController
 
   private
     def request_params
-      params.require(:friendship_request).permit(:request_recipient, :request_provider)
+      params.require(:friendship_request).permit(:request_recipient_id, :request_provider_id)
     end
 end
