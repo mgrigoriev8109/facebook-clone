@@ -1,0 +1,13 @@
+
+<ul>
+  <% unless @posts.nil? %>
+    <% @posts.each do |post| %>
+      <% if post.user_id == current_user.id %>
+        <li>
+          <p>Author: <%= User.find(post.user_id).username %></p>
+          <p>Post: <%= post.body %></p>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
