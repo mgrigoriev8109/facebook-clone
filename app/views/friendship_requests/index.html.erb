@@ -1,0 +1,19 @@
+<h1>Sent Friend Requests</h1>
+<ul>
+<% @friendship_requests.each do |request| %>
+  <% if request.request_provider_id == current_user.id %>
+    <% user = User.find(request.request_recipient_id) %>
+    <li> <%= link_to user.username, user %></li>
+  <% end %>
+<% end %>
+</ul>
+
+<h1>Received Friend Requests</h1>
+<ul>
+<% @friendship_requests.each do |request| %>
+  <% if request.request_recipient_id == current_user.id %>
+    <% user = User.find(request.request_provider_id) %>
+    <li> <%= link_to user.username, user %></li>
+  <% end %>
+<% end %>
+</ul>

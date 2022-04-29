@@ -18,10 +18,10 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = "Your post has been created!"
-      redirect_to new_post_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Your new post couldn't be created. Please check the form."
-      render :new, status: :unprocessable_entity
+      redirect_back(fallback_location: root_path)
     end
   end
 

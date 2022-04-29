@@ -1,5 +1,5 @@
 <p>Make a post!</p>
-<%= form_with model: @post do |form| %>
+<%= form_with scope: :post, url: posts_path do |form| %>
   <div>
     <%= form.text_field :body %>
   </div>
