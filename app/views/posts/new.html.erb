@@ -1,15 +1,7 @@
 <h1>News Feed</h1>
 
 <p>Make a post!</p>
-<%= form_with model: @post do |form| %>
-  <div>
-    <%= form.text_field :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render 'new_post' %>
 
 <ul>
   <% unless @posts.nil? %>

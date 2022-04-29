@@ -1,1 +1,9 @@
 <p>This is the account page of: <%= @user.username %></p>
+
+<% if @user == current_user %>
+  <%= render 'posts/new_post' %>
+<% end %>
+
+<% unless @user == current_user %>
+  <!-- friendship request button -->
+<% end %>
