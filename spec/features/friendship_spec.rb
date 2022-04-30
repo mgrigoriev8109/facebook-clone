@@ -1,28 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe 'Friendship Integration Tests', type: :system do
-  before do
-    FactoryBot.create(:user_two)
-    login_as(FactoryBot.create(:user))
-  end
 
   it 'Verifies a sent friendship request' do
-    visit users_path
-    click_on 'user_two'
-    click_on 'Request Friendship'
-    visit friendships_path
+    user_1 = FactoryBot.create(:user, email: '1@gmail.com', username: 'user_1')
+    user_2 = FactoryBot.create(:user, email: '2@gmail.com', username: 'user_2')
+    login_as(user_1, :scope => :user) 
 
-    expect(page).to have_content('Friendship Request Sent: user_two')
+    visit users_path
+    click_on 'user_2'
+    click_on 'Request Friendship'
+    visit friendship_requests_path
+
+    expect(page).to have_content('user_2')
   end
 
-  xit 'Verifies a received friendship request' do
+  it 'Verifies a received friendship request' do
+    user_1 = FactoryBot.create(:user, email: '1@gmail.com', username: 'user_1')
+    user_2 = FactoryBot.create(:user, email: '2@gmail.com', username: 'user_2')
+    login_as(user_1, :scope => :user) 
+    
     visit users_path
-    click_on 'user_two'
+    click_on 'user_2'
     click_on 'Request Friendship'
-    logout
-    login_as(:user_two)
-    visit friendships_path
+    click_on "Sign Out"
+    login_as(user_2, :scope => :user)
+    visit friendship_requests_path
 
-    expect(page).to have_content('Friendship Request Received: user_one')
+    expect(page).to have_content('user_1')
   end
 end
