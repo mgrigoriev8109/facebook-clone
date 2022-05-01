@@ -17,7 +17,7 @@
     
     <%= form_with model: Friendship.new do |form| %>
       <div>
-        <%= form.hidden_field :friendship_recipient_id, value: @user.id %>
+        <%= form.hidden_field :friendship_recipient_id, value: user.id %>
       </div>
 
       <div>
