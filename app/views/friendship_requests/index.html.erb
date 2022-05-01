@@ -14,6 +14,20 @@
   <% if request.request_recipient_id == current_user.id %>
     <% user = User.find(request.request_provider_id) %>
     <li><%= link_to user.username, user %></li>
+    
+    <%= form_with model: Friendship.new do |form| %>
+      <div>
+        <%= form.hidden_field :friendship_recipient_id, value: @user.id %>
+      </div>
+
+      <div>
+        <%= form.hidden_field :friendship_provider_id, value: current_user.id %>
+      </div>
+
+      <div>
+        <%= form.submit "Accept Friendship" %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 </ul>
