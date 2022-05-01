@@ -126,14 +126,6 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Write failing test for FriendshipRequest: log in, visit second user page, click Send Friendship Request button, visit FriendshipRequests view, expect it to have content of user1
-
-- make 'Send Friendship Request' button in user profile
-- make Post Creation form disappear if this isn't the currently logged in user's profile
-- make FriendshipRequest view
-- Create second user in FactoryBot
-- make the test pass
-
 - Write failing test for Friendship acceptance
 - Make a button for 'Accept Friendship' in FriendshipRequest view
 - make Friendship view
