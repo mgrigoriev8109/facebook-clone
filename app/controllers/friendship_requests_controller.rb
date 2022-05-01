@@ -17,7 +17,7 @@ class FriendshipRequestsController < ApplicationController
     @friendship_request = FriendshipRequest.new(request_params)
 
     if @friendship_request.save
-      flash[:success] = "Your friend request has been sent!"
+      flash[:notice] = "Your friend request has been sent!"
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Your friend request could not be sent. Please check the form."

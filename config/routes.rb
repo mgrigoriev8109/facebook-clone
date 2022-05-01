@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
   resources :posts
   resources :friendship_requests
+  resources :friendships
 
   root "posts#new"
 
