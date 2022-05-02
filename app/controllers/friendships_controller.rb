@@ -15,8 +15,9 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = Friendship.new(friendship_params)
-
+    debugger
     if @friendship.save
+      delete_request
       flash[:notice] = "Your friendship has been accepted!"
       redirect_back(fallback_location: root_path)
     else
@@ -28,12 +29,18 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-
     redirect_to root_path, status: :see_other
   end
 
   private
     def friendship_params
       params.require(:friendship).permit(:friendship_recipient_id, :friendship_provider_id)
+    end
+
+    def delete_request
+      recipient_id = friendship_params[:friendship_recipient_id]
+      provider_id = friendship_params[:friendship_provider_id]
+      @friendship_request = FriendshipRequest.where(request_recipient_id: [recipient_id, provider_id]).where(request_provider_id: [recipient_id, provider_id]).first
+      FriendshipRequest.destroy(@friendship_request.id)
     end
 end
