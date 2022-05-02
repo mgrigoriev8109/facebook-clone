@@ -61,16 +61,19 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
     expect(page).to have_content('user_1')
   end
 
-  xit 'Verifies friendship request deletion upon friend acceptance' do
+  it 'Verifies friendship request deletion upon friend acceptance' do
     visit users_path
     click_on 'user_2'
     click_on 'Request Friendship'
     click_on "Sign Out"
     login_as(user_2, :scope => :user)
-
     visit friendship_requests_path
     click_on "Accept Friendship"
-    visit friendship_requests_path
+    visit friendships_path
+
+    click_on "Remove Friendship"
+    page.accept_alert
+    visit friendships_path
 
     expect(page).not_to have_content('user_1')
   end
