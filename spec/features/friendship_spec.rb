@@ -1,17 +1,18 @@
 require 'rails_helper'
 require 'database_cleaner/active_record'
+require "bullet"
 
 RSpec.describe 'Friendship Integration Tests', type: :system do
-  before(:each) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean  
+
+  let(:user_1) { FactoryBot.create(:user, email: '1@gmail.com', username: 'user_1') }
+  let(:user_2) { FactoryBot.create(:user, email: '2@gmail.com', username: 'user_2') }
+
+  before(:each) do 
+    login_as(user_2) 
+    login_as(user_1, :scope => :user) 
   end
 
   it 'Verifies a sent friendship request' do
-    user_1 = FactoryBot.create(:user, email: '1@gmail.com', username: 'user_1')
-    user_2 = FactoryBot.create(:user, email: '2@gmail.com', username: 'user_2')
-    login_as(user_1, :scope => :user) 
-
     visit users_path
     click_on 'user_2'
     click_on 'Request Friendship'
@@ -21,9 +22,6 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
   end
 
   it 'Verifies a received friendship request' do
-    user_1 = FactoryBot.create(:user, email: '1@gmail.com', username: 'user_1')
-    user_2 = FactoryBot.create(:user, email: '2@gmail.com', username: 'user_2')
-    login_as(user_1, :scope => :user) 
     
     visit users_path
     click_on 'user_2'
