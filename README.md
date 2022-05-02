@@ -126,14 +126,6 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Write failing test for Friendship acceptance
-- Make a button for 'Accept Friendship' in FriendshipRequest view
-- make Friendship view
-- TDD Deleting a Friendship
-- TDD Deleting a FriendshipRequest
-
-- End-to-end test full Friendship feature
-
 - TDD Notification creation upon receiving a FriendshipRequest, and upon creation of a Friendship
 
 - Use similar process to TDD creating a text-only Post
