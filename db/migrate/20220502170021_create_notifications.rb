@@ -4,6 +4,8 @@ class CreateNotifications < ActiveRecord::Migration[7.0]
 
       t.belongs_to :user
       t.boolean :notification_viewed
+      t.text :body
+
       t.timestamps
     end
   end
