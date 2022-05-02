@@ -15,7 +15,6 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = Friendship.new(friendship_params)
-    debugger
     if @friendship.save
       delete_request
       flash[:notice] = "Your friendship has been accepted!"

@@ -4,9 +4,17 @@
   <% if friendship.friendship_provider_id == current_user.id %>
     <% user = User.find(friendship.friendship_recipient_id) %>
     <li><%= link_to user.username, user %></li>
+  <li><%= link_to "Destroy", friendship_path(friendship), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
   <% elsif friendship.friendship_recipient_id == current_user.id %>
     <% user = User.find(friendship.friendship_provider_id) %>
     <li><%= link_to user.username, user %></li>
+    <li><%= link_to "Destroy", friendship_path(friendship), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %></li>
   <% end %>
 <% end %>
 </ul>
