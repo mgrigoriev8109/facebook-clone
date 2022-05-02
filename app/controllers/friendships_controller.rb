@@ -20,7 +20,7 @@ class FriendshipsController < ApplicationController
       flash[:notice] = "Your friendship has been accepted!"
       redirect_back(fallback_location: root_path)
     else
-      flash[:alert] = "Your friendship was not accepted. Please check the form."
+      flash[:alert] = "Your friendship was not accepted."
       redirect_back(fallback_location: root_path)
     end
   end

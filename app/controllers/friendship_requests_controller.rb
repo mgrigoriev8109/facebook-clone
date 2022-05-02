@@ -20,7 +20,7 @@ class FriendshipRequestsController < ApplicationController
       flash[:notice] = "Your friend request has been sent!"
       redirect_back(fallback_location: root_path)
     else
-      flash[:alert] = "Your friend request could not be sent. Please check the form."
+      flash[:alert] = "Your request was not sent - it's likely you've already sent one."
       redirect_back(fallback_location: root_path)
     end
   end
