@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :friendship_requests
   resources :friendships
+  resources :notifications
 
   root "posts#new"
 
