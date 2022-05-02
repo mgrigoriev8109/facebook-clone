@@ -34,6 +34,19 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
     expect(page).to have_content('user_1')
   end
 
+  it 'Verifies deleting a friendship request' do
+    visit users_path
+    click_on 'user_2'
+    click_on 'Request Friendship'
+
+    visit friendship_requests_path
+    click_on "Reject Request"
+    page.accept_alert
+    visit friendship_requests_path
+
+    expect(page).not_to have_content('user_2')
+  end
+
   it 'Verifies accepted new friend upon accepted friendship' do
     visit users_path
     click_on 'user_2'

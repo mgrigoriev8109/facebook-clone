@@ -2,8 +2,14 @@
 <ul>
 <% @friendship_requests.each do |request| %>
   <% if request.request_provider_id == current_user.id %>
+
     <% user = User.find(request.request_recipient_id) %>
     <li><%= link_to user.username, user %></li>
+    
+    <li><%= link_to "Reject Request", friendship_request_path(request), data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %></li>
   <% end %>
 <% end %>
 </ul>
@@ -12,9 +18,15 @@
 <ul>
 <% @friendship_requests.each do |request| %>
   <% if request.request_recipient_id == current_user.id %>
+
     <% user = User.find(request.request_provider_id) %>
     <li><%= link_to user.username, user %></li>
-    
+
+    <li><%= link_to "Reject Request", friendship_request_path(request), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %></li>
+
     <%= form_with model: Friendship.new do |form| %>
       <div>
         <%= form.hidden_field :friendship_recipient_id, value: user.id %>
