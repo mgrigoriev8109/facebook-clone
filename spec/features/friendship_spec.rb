@@ -15,6 +15,7 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
   it 'Verifies a sent friendship request' do
     visit users_path
     click_on 'user_2'
+
     click_on 'Request Friendship'
     visit friendship_requests_path
 
@@ -22,14 +23,43 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
   end
 
   it 'Verifies a received friendship request' do
-    
     visit users_path
     click_on 'user_2'
     click_on 'Request Friendship'
     click_on "Sign Out"
+
     login_as(user_2, :scope => :user)
     visit friendship_requests_path
 
     expect(page).to have_content('user_1')
   end
+
+  it 'Verifies accepted new friend upon accepted friendship' do
+    visit users_path
+    click_on 'user_2'
+    click_on 'Request Friendship'
+    click_on "Sign Out"
+    login_as(user_2, :scope => :user)
+
+    visit friendship_requests_path
+    click_on "Accept Friendship"
+    visit friendships_path
+
+    expect(page).to have_content('user_1')
+  end
+
+  xit 'Verifies friendship request deletion upon friend acceptance' do
+    visit users_path
+    click_on 'user_2'
+    click_on 'Request Friendship'
+    click_on "Sign Out"
+    login_as(user_2, :scope => :user)
+
+    visit friendship_requests_path
+    click_on "Accept Friendship"
+    visit friendship_requests_path
+
+    expect(page).not_to have_content('user_1')
+  end
+
 end
