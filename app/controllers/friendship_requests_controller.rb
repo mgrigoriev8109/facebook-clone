@@ -35,6 +35,7 @@ class FriendshipRequestsController < ApplicationController
 
   private
     def request_params
-      params.require(:friendship_request).permit(:request_recipient_id, :request_provider_id, notification_attributes:[:notification_receiver_id, :body])
+      #debugger
+      params.require(:friendship_request).permit(:request_recipient_id, :request_provider_id, notifications_attributes:[:notification_id, :body])
     end
 end

@@ -5,7 +5,7 @@
 <% end %>
 
 <% unless @user == current_user %>
-  <%= form_with model: FriendshipRequest.new do |form| %>
+  <%= form_with model: @friendship_request do |form| %>
     <div>
       <%= form.hidden_field :request_recipient_id, value: @user.id %>
     </div>
@@ -14,10 +14,9 @@
       <%= form.hidden_field :request_provider_id, value: current_user.id %>
     </div>
 
-    <%= form.fields_for :notification do |notification_form| %>
-        <%= notification_form.hidden_field :notification_receiver_id, value: @user.id %>
+    <%= form.fields_for :notifications, Notification.new do |notification_form| %>
 
-        <%= notification_form.hidden_field :body %>
+        <%= notification_form.hidden_field :body, value: "random" %>
     <% end %>
 
     <div>

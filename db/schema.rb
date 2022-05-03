@@ -33,10 +33,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_02_170021) do
   end
 
   create_table "notifications", force: :cascade do |t|
+    t.bigint "friendship_request_id"
     t.boolean "notification_viewed", default: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["friendship_request_id"], name: "index_notifications_on_friendship_request_id"
   end
 
   create_table "posts", force: :cascade do |t|

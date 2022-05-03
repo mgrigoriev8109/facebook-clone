@@ -31,6 +31,6 @@ class NotificationsController < ApplicationController
 
   private
     def notification_params
-      params.require(:notification).permit(:user_id, :body)
+      params.require(:notification).permit(:body)
     end
 end
