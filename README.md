@@ -126,6 +126,9 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
+- Notification will probably be a nested form within every other form that requires it, so within the forms responsible for creating  FriendshipRequest, Friendship, Comment, and a Like. 
+- The view holding the form creating that record will also create a notification_body variable, and stick into it something like "#{notification_sender} is sent you a friendship request!" or "#{notification_sender} commented on your post '#{post.first_twenty_characters}...'!". This will be passed along with the :receiver_id into the controller, which will use the parameters to make a new notification.
+
 - TDD Notification creation upon receiving a FriendshipRequest, and upon creation of a Friendship
 
 - Use similar process to TDD creating a text-only Post
