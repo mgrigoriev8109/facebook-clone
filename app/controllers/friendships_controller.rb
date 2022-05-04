@@ -11,6 +11,7 @@ class FriendshipsController < ApplicationController
   def new
     @friendships = Friendship.all
     @friendship = Friendship.new
+    @friendship.notifications.build
   end
 
   def create
@@ -33,7 +34,7 @@ class FriendshipsController < ApplicationController
 
   private
     def friendship_params
-      params.require(:friendship).permit(:friendship_recipient_id, :friendship_provider_id)
+      params.require(:friendship).permit(:friendship_recipient_id, :friendship_provider_id, notifications_attributes:[:notification_id, :recipient_id, :body])
     end
 
     def delete_request

@@ -16,7 +16,7 @@
 class FriendshipRequest < ApplicationRecord
   belongs_to :request_provider, class_name: "User"
   belongs_to :request_recipient, class_name: "User"
-  has_many :notifications
+  has_many :notifications, as: :notification_provider
 
   validates_uniqueness_of :request_provider_id, scope: :request_recipient_id
   accepts_nested_attributes_for :notifications
