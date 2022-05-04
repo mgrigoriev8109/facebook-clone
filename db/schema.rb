@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_02_170021) do
   end
 
   create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
     t.bigint "friendship_request_id"
     t.boolean "notification_viewed", default: false
     t.text "body"

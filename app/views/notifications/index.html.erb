@@ -1,5 +1,5 @@
 <% @notifications.each do |notification| %>
-  <% if notification.user_id == current_user.id %>
+  <% if notification.recipient_id == current_user.id %>
     <%= notification.body %>
   <% end %>
 <% end %>

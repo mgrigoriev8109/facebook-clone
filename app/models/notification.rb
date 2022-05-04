@@ -8,6 +8,7 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  friendship_request_id :bigint
+#  recipient_id          :integer
 #
 # Indexes
 #

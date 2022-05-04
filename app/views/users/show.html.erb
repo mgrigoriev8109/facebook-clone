@@ -15,8 +15,11 @@
     </div>
 
     <%= form.fields_for :notifications, Notification.new do |notification_form| %>
+        <% notification_message = "#{current_user.username} sent you a friendship request!"%>
 
-        <%= notification_form.hidden_field :body, value: "random" %>
+        <%= notification_form.hidden_field :recipient_id, value: @user.id %>
+        
+        <%= notification_form.hidden_field :body, value: notification_message %>
     <% end %>
 
     <div>

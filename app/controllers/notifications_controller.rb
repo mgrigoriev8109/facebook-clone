@@ -1,6 +1,7 @@
 class NotificationsController < ApplicationController
   def index
     @notifications = Notification.all
+    @requests = FriendshipRequest.all
   end
 
   def show
