@@ -20,6 +20,6 @@ RSpec.describe 'Notification Integration Tests', type: :system do
 
     visit notifications_path
 
-    expect(page).to have_content('user_1')
+    expect(page).to have_content('user_1 sent you a friendship request!')
   end
 end
