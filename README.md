@@ -39,7 +39,7 @@ Log in as a test user using the following credentials:
 ### Development Features
 - Utilize Turbo to increase performance 
 - Bulma used for styling
-- TDD and comprehensive integration testing performed through the Capybara gem, with Guard gem running in the background to provide continuous test feedback
+-  and comprehensive integration testing performed through the Capybara gem, with Guard gem running in the background to provide continuous test feedback
 - PostgreSQL used in both development and production
 
 ### Reflections
@@ -126,27 +126,23 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Notification will probably be a nested form within every other form that requires it, so within the forms responsible for creating  FriendshipRequest, Friendship, Comment, and a Like. 
-- The view holding the form creating that record will also create a notification_body variable, and stick into it something like "#{notification_sender} is sent you a friendship request!" or "#{notification_sender} commented on your post '#{post.first_twenty_characters}...'!". This will be passed along with the :receiver_id into the controller, which will use the parameters to make a new notification.
-
-- TDD Notification creation upon receiving a FriendshipRequest, and upon creation of a Friendship
-
-- Use similar process to TDD creating a text-only Post
-- View all friend posts in News Feed, and personal posts in User Profile
-- TDD deleting a post 
-- TDD creating a comment
-- TDD creating notification if friend comments on a user profile
-- TDD deleting a comment
-- Integration test full Post / Nested comment feature: log in as User, make a Post, make a second post, delete it, make three posts, delete the last one, test the News Feed output
-
-- TDD creating a Post Liking and Comment Liking
-- TDD creating notification if friend likes a user post or comment
-- TDD deleting a Post Liking or Comment Liking
+- View all friend posts in News Feed
+- Deleting a post 
+- Deleting a notification
+- Creating a comment
+- Creating notification if friend comments on a user profile
+- Deleting a comment
+- Creating a Post Liking and Comment Liking
+- Creating notification if friend likes a user post or comment
+- Deleting a Post Liking or Comment Liking
 
 - Create end-to-end test that uses every feature in the app
 
 - Implement profile pictures
 - Implement OmniAuth for login
 - Implement mailer
-- Style using Bulma
+- Style using Tailwind
 - Utilize Turbo to increase performance
+- Deploy
+- Populate with fake users
+- Test with family members

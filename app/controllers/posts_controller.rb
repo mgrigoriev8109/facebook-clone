@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @posts = Post.all
+    @friend_posts = Post.joins("INNER JOIN friendship ON friendship.author_id = author.id AND posts.published = 't'")
     @post = Post.new
   end
 
