@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <header id ="header">
+      <%= link_to "Sign In", new_user_session_path %>
+      <%= link_to "Sign Up", new_user_registration_path %>
+      <%= link_to "Sign Out", destroy_user_session_path %>
+    </header>
     <main id="main">
       <%= yield %>
     </main>
@@ -21,9 +26,7 @@
       <%= link_to "User Profile", current_user %>
       <%= link_to "Friendship Requests", friendship_requests_path %>
       <%= link_to "Friendships", friendships_path %>
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Sign Up", new_user_registration_path %>
-      <%= link_to "Sign Out", destroy_user_session_path %>
+      <%= link_to "Notifications", notifications_path %>
       
       <% if flash[:notice] %>
         <p class="notice"><%= flash[:notice] %></p>
