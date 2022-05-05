@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @friend_posts = Post.joins("INNER JOIN friendship ON friendship.author_id = author.id AND posts.published = 't'")
+    @newsfeed_posts = Post.where(user_id: find_newsfeed_user_ids).sort_by(&:created_at)
     @post = Post.new
   end
 
@@ -49,5 +49,12 @@ class PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:body)
+    end
+
+    def find_newsfeed_user_ids
+      newsfeed_ids = Friendship.where(friendship_recipient_id: current_user.id).pluck(:friendship_provider_id)
+      newsfeed_ids.push(Friendship.where(friendship_provider_id: current_user.id).pluck(:friendship_recipient_id))
+      newsfeed_ids.push(current_user.id)
+      newsfeed_ids
     end
 end
