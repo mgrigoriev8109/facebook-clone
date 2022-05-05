@@ -126,8 +126,6 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Deleting a post 
-- Deleting a notification
 - Creating a comment
 - Creating notification if friend comments on a user profile
 - Deleting a comment
@@ -142,6 +140,7 @@ t.references :liked_content, polymorphic: true
 - Implement mailer
 - Style using Tailwind
 - Utilize Turbo to increase performance
+- Create own API using JSon
 - Deploy
 - Populate with fake users
 - Test with family members
