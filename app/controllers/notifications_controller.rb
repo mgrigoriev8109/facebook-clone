@@ -27,7 +27,7 @@ class NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to notifications_path, status: :see_other
   end
 
   private

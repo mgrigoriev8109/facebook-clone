@@ -29,7 +29,7 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to friendships_path, status: :see_other
   end
 
   private

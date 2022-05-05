@@ -30,7 +30,7 @@ class FriendshipRequestsController < ApplicationController
     @friendship_request = FriendshipRequest.find(params[:id])
     @friendship_request.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to friendship_requests_path, status: :see_other
   end
 
   private

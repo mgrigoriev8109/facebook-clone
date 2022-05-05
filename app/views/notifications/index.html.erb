@@ -1,5 +1,12 @@
-<% @notifications.each do |notification| %>
-  <% if notification.recipient_id == current_user.id %>
-    <%= notification.body %>
+<ul>
+  <% @notifications.each do |notification| %>
+    <% if notification.recipient_id == current_user.id %>
+      <li>
+        <%= notification.body %>
+        <%= link_to "Delete Notification", notification_path(notification), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"} %>
+      </li>
+    <% end %>
   <% end %>
-<% end %>
+</ul>
