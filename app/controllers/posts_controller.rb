@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @newsfeed_posts = Post.where(user_id: find_newsfeed_user_ids).sort_by(&:created_at)
+    @newsfeed_posts = Post.where(user_id: find_newsfeed_user_ids).sort_by(&:created_at).reverse
     @post = Post.new
   end
 
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
 
     def find_newsfeed_user_ids
       newsfeed_ids = Friendship.where(friendship_recipient_id: current_user.id).pluck(:friendship_provider_id)
-      newsfeed_ids.push(Friendship.where(friendship_provider_id: current_user.id).pluck(:friendship_recipient_id))
+      newsfeed_ids.concat(Friendship.where(friendship_provider_id: current_user.id).pluck(:friendship_recipient_id))
       newsfeed_ids.push(current_user.id)
       newsfeed_ids
     end

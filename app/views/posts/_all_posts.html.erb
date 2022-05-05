@@ -1,10 +1,11 @@
 <ul>
-  <% unless @posts.nil? %>
-    <% @posts.each do |post| %>
+  <% unless @newsfeed_posts.nil? %>
+    <% @newsfeed_posts.each do |post| %>
       <li>
         
         <p>Author: <%= User.find(post.user_id).username %></p>
         <p>Post: <%= post.body %></p>
+        <p>Created at: <%= post.created_at %></p>
       </li>
     <% end %>
   <% end %>
