@@ -126,7 +126,6 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- View all friend posts in News Feed
 - Deleting a post 
 - Deleting a notification
 - Creating a comment
