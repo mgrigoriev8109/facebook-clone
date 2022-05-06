@@ -25,5 +25,6 @@ class User < ApplicationRecord
   
   #has_many :friendships
   has_many :posts
+  has_many :comments
   has_many :friendship_requests
 end
