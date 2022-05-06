@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def new
     @newsfeed_posts = Post.where(user_id: find_newsfeed_user_ids).sort_by(&:created_at).reverse
     @post = Post.new
+    @comment = Comment.new
   end
 
   def create

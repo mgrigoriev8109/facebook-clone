@@ -12,16 +12,7 @@
           turbo_confirm: "Are you sure?"} %>
         <% end %>
 
-        <% @comment = post.comments.build %>
-        <%= form_with model: @comment do |form| %>
-          <p>
-            <%= form.label :body, 'Comment on post:' %><br>
-            <%= form.text_area :body %>
-          </p>
-          <p>
-            <%= form.submit %>
-          </p>
-        <% end %>
+        <%= render "comments/new_comments", post: post %>
       </li>
     <% end %>
   <% end %>

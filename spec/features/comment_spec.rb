@@ -16,6 +16,8 @@ RSpec.describe "Comment Integration Tests", type: :system do
     visit root_path
     fill_in 'post[body]', with: 'Here is a post by current_user.'
     click_on 'Save Post'
+    fill_in 'comment[body]', with: 'Here is a comment by current_user.'
+    click_on 'Create Comment'
 
     expect(page).to have_content('Here is a comment by current_user.')
   end
