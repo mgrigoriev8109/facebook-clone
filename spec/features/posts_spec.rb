@@ -26,7 +26,7 @@ RSpec.describe "Post Integration Tests", type: :system do
     fill_in 'post[body]', with: 'Here is a post by the person who sent the friendship request.'
     click_on 'Save Post'
     visit users_path
-    click_on 'user_1'
+    click_on user_1.username
     click_on 'Request Friendship'
     click_on "Sign Out"
 
@@ -43,7 +43,7 @@ RSpec.describe "Post Integration Tests", type: :system do
 
     login_as(user_1)
     visit users_path
-    click_on 'user_3'
+    click_on user_3.username
     click_on 'Request Friendship'
     click_on "Sign Out"
 
