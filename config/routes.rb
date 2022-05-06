@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :friendship_requests
   resources :friendships
   resources :notifications
+  resources :comments
 
   root "posts#new"
 
