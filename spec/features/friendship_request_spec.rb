@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'database_cleaner/active_record'
 require "bullet"
 
 RSpec.describe 'Friendship Integration Tests', type: :system do

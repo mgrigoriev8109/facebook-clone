@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "bullet"
 
 RSpec.describe "Comment Integration Tests", type: :system do
   let(:user_1) { FactoryBot.create(:user) }
@@ -11,14 +12,34 @@ RSpec.describe "Comment Integration Tests", type: :system do
     login_as(user_3, :scope => :user) 
   end
 
-  it 'Logging in and creating posts by current user' do
+  it 'Logging in and creating a comment by current user' do
     login_as(user_1) 
     visit root_path
-    fill_in 'post[body]', with: 'Here is a post by current_user.'
+    fill_in 'post[body]', with: "Here is a post by #{user_1.username}."
     click_on 'Save Post'
-    fill_in 'comment[body]', with: 'Here is a comment by current_user.'
+    fill_in 'comment[body]', with: "Here is a comment by #{user_1.username}."
     click_on 'Create Comment'
 
-    expect(page).to have_content('Here is a comment by current_user.')
+    expect(page).to have_content("Here is a comment by #{user_1.username}.")
+  end
+
+  it 'Logging in and commenting on user_1 post by user_2' do
+    login_as(user_1) 
+    visit root_path
+    fill_in 'post[body]', with: "Here is a post by #{user_1.username}."
+    click_on 'Save Post'
+    visit users_path
+    click_on user_2.username
+    click_on 'Request Friendship'
+    click_on "Sign Out"
+
+    login_as(user_2, :scope => :user)
+    visit friendship_requests_path
+    click_on "Accept Friendship"
+    visit root_path
+    fill_in 'comment[body]', with: "Here is a comment by #{user_2.username}."
+    click_on 'Create Comment'
+
+    expect(page).to have_content("Here is a comment by #{user_2.username}.")
   end
 end
