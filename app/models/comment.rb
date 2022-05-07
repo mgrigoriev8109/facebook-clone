@@ -17,4 +17,7 @@
 class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
+  has_many :notifications, as: :notification_provider
+
+  accepts_nested_attributes_for :notifications
 end

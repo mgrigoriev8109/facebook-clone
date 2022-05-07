@@ -11,6 +11,15 @@
     <%= form.label :body, 'Comment on post:' %><br>
     <%= form.text_area :body %>
   </div>
+  <% unless post.user_id == current_user.id %>
+    <%= form.fields_for :notifications, Notification.new do |notification_form| %>
+      <% notification_message = "#{current_user.username} commented on your post '#{post.body[0, 10]}...'!"%>
+
+      <%= notification_form.hidden_field :recipient_id, value: post.user_id %>
+      
+      <%= notification_form.hidden_field :body, value: notification_message %>
+    <% end %>
+  <% end %>
   <div>
     <%= form.submit %>
   </div>

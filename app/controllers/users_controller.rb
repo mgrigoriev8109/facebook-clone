@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @posts = Post.where(user_id: current_user.id)
     @friendship_request = FriendshipRequest.new
     @comment = Comment.new
+    @comment.notifications.build
   end
 
   def index

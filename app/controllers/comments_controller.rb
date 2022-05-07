@@ -2,15 +2,16 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!
   def index
-    comments = Comment.all
+    @comments = Comment.all
   end
 
   def show
-    comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def new
-    comment = Comment.new
+    @comment = Comment.new
+    @comment.notifications.build
   end
 
   def create
@@ -49,6 +50,6 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:user_id, :post_id, :body)
+      params.require(:comment).permit(:user_id, :post_id, :body, notifications_attributes:[:notification_id, :recipient_id, :body])
     end
 end
