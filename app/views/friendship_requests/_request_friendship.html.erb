@@ -1,0 +1,21 @@
+<%= form_with model: @friendship_request do |form| %>
+  <div>
+    <%= form.hidden_field :request_recipient_id, value: @user.id %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :request_provider_id, value: current_user.id %>
+  </div>
+
+  <%= form.fields_for :notifications, Notification.new do |notification_form| %>
+      <% notification_message = "#{current_user.username} sent you a friendship request!"%>
+
+      <%= notification_form.hidden_field :recipient_id, value: @user.id %>
+      
+      <%= notification_form.hidden_field :body, value: notification_message %>
+  <% end %>
+
+  <div>
+    <%= form.submit "Request Friendship" %>
+  </div>
+<% end %>
