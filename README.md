@@ -125,11 +125,10 @@ t.references :liked_content, polymorphic: true
 ---
 
 #### Implementation
-
-- Creating a comment
-- Creating notification if friend comments on a user profile
-- Deleting a comment
 - Creating a Post Liking and Comment Liking
+- Similar concept as notifications, polymorphic association belonging to either post or comment
+- also belongs_to a user
+
 - Creating notification if friend likes a user post or comment
 - Deleting a Post Liking or Comment Liking
 
