@@ -18,6 +18,7 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
   has_many :notifications, as: :notification_provider
+  has_many :likes, as: :liked_item
 
   accepts_nested_attributes_for :notifications
 end

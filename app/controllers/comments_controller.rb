@@ -28,22 +28,22 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
-      redirect_to comment
+      redirect_to @comment
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    @Comment.destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
 
     redirect_to root_path, status: :see_other
   end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :friendships
   resources :notifications
   resources :comments
+  resources :likes
 
   root "posts#new"
 
