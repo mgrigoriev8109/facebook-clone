@@ -1,21 +1,21 @@
 <%= form_with model: @like, local: true do |form| %>
   <div>
-    <%= form.hidden_field :liked_item_type, value: post.class %>
+    <%= form.hidden_field :liked_item_type, value: liked_item.class %>
   </div>
 
   <div>
-    <%= form.hidden_field :liked_item_id, value: post.id %>
+    <%= form.hidden_field :liked_item_id, value: liked_item.id %>
   </div>
 
   <div>
     <%= form.hidden_field :like_provider_id, value: current_user.id %>
   </div>
 
-  <% unless post.user_id == current_user.id %>
+  <% unless liked_item.user_id == current_user.id %>
     <%= form.fields_for :notifications, Notification.new do |notification_form| %>
-      <% notification_message = "#{current_user.username} liked your message '#{post.body[0, 10]}...'!"%>
+      <% notification_message = "#{current_user.username} liked your message '#{liked_item.body[0, 10]}...'!"%>
 
-      <%= notification_form.hidden_field :recipient_id, value: post.user_id %>
+      <%= notification_form.hidden_field :recipient_id, value: liked_item.user_id %>
       
       <%= notification_form.hidden_field :body, value: notification_message %>
     <% end %>

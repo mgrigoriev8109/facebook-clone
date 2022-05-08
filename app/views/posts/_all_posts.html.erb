@@ -8,8 +8,11 @@
           <%= link_to "Delete post", post_path(post), data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"} %>
+        <% else %>
+          <%= render "likes/new_likes", liked_item: post %>
         <% end %>
-        <%= render "likes/new_likes", post: post %>
+        
+        <%= render "likes/all_likes", liked_item: post %>
         <%= render "comments/new_comments", post: post %>
       </li>
 
@@ -21,8 +24,9 @@
           <%= link_to "Delete comment", comment_path(comment), data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"} %>
+        <% else %>
+          <%= render "likes/new_likes", liked_item: comment %>
         <% end %>
-        <%= render "likes/new_likes", post: post %>
       <% end %>
    <% end %>
   <% end %>
