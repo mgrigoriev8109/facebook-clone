@@ -1,0 +1,6 @@
+<p>Liked by:
+<% likes = liked_item.likes.includes(:like_provider) %>
+<% likes.each do |like| %>
+  <%= like.like_provider.username %>
+<% end %>
+</p>
