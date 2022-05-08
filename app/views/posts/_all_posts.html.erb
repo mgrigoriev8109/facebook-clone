@@ -2,15 +2,13 @@
   <% unless posts.nil? %>
     <% posts.each do |post| %>
       <li>
-        <p><%= User.find(post.user_id).username %> posted: <%= post.body %> </p>
-        <p>at: <%= post.created_at %></p>
-
+        <%= User.find(post.user_id).username %> posted: 
+        <%= post.body %> at: <%= post.created_at %>
         <% if post.user_id == current_user.id %>
           <%= link_to "Delete post", post_path(post), data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"} %>
         <% end %>
-
         <%= render "likes/new_likes", post: post %>
         <%= render "comments/new_comments", post: post %>
       </li>
@@ -18,13 +16,13 @@
       <% comments = Comment.where(post_id: post.id).sort_by(&:created_at).reverse %>
 
       <% comments.each do |comment| %>
-        <p><%= User.find(comment.user_id).username %> commented: <%= comment.body %> </p>
-        <p>at: <%= comment.created_at %></p>
+        <%= User.find(comment.user_id).username %> commented: <%= comment.body %> at: <%= comment.created_at %>
         <% if comment.user_id == current_user.id %>
           <%= link_to "Delete comment", comment_path(comment), data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"} %>
         <% end %>
+        <%= render "likes/new_likes", post: post %>
       <% end %>
    <% end %>
   <% end %>

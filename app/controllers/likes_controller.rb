@@ -17,6 +17,9 @@ class LikesController < ApplicationController
     if like_params[:liked_item_type] == "Post"
       @post = Post.find(like_params[:liked_item_id])
       @like = @post.likes.build(like_params)
+    else
+      @comment = Comment.find(like_params[:liked_item_id])
+      @like = @comment.likes.build(like_params)
     end
 
     if @like.save

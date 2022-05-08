@@ -13,7 +13,7 @@
 
   <% unless post.user_id == current_user.id %>
     <%= form.fields_for :notifications, Notification.new do |notification_form| %>
-      <% notification_message = "#{current_user.username} commented on your post '#{post.body[0, 10]}...'!"%>
+      <% notification_message = "#{current_user.username} liked your message '#{post.body[0, 10]}...'!"%>
 
       <%= notification_form.hidden_field :recipient_id, value: post.user_id %>
       
@@ -23,6 +23,6 @@
 
   
   <div>
-    <%= form.submit "Like Post" %>
+    <%= form.submit "Like" %>
   </div>
 <% end %>
