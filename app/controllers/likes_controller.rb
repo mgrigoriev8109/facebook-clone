@@ -10,12 +10,14 @@ class LikesController < ApplicationController
 
   def new
     @like = Like.new
-    #@like.notifications.build
+    @like.notifications.build
   end
 
   def create
-    @post = Post.find(like_params[:post_id])
-    @like = @post.likes.build(like_params)
+    if like_params[:liked_item_type] == "Post"
+      @post = Post.find(like_params[:liked_item_id])
+      @like = @post.likes.build(like_params)
+    end
 
     if @like.save
       flash[:success] = "Your like has been created!"
@@ -49,6 +51,6 @@ class LikesController < ApplicationController
 
   private
     def like_params
-      params.require(:like).permit(:user_id)
+      params.require(:like).permit(:like_provider_id, :liked_item_type, :liked_item_id, notifications_attributes:[:notification_id, :recipient_id, :body])
     end
 end

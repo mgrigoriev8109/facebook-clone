@@ -13,6 +13,8 @@ class PostsController < ApplicationController
     @post = Post.new
     @comment = Comment.new
     @comment.notifications.build
+    @like = Like.new
+    @like.notifications.build
   end
 
   def create
