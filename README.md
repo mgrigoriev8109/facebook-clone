@@ -126,16 +126,10 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Deleting a Post Liking or Comment Liking
-
-- Create end-to-end test that uses every feature in the app
-
-- Implement profile pictures
-- Implement OmniAuth for login
-- Implement mailer
+- Implement OmniAuth github for login
+- Implement profile pictures, active storage and aws to store them
 - Style using Tailwind
-- Utilize Turbo to increase performance
-- Create own API using JSon
+- Add in a react component
 - Deploy
-- Populate with fake users
+- Populate with fake friends, fake posts, fake comments, fake likes
 - Test with family members
