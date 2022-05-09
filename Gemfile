@@ -15,6 +15,10 @@ gem "pg", "~> 1.1"
 # Use devise gem
 gem 'devise'
 
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-rails_csrf_protection'
+gem 'figaro'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
