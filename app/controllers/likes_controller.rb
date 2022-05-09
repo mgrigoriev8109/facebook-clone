@@ -26,7 +26,7 @@ class LikesController < ApplicationController
       flash[:success] = "Your like has been created!"
       redirect_back(fallback_location: root_path)
     else
-      flash[:alert] = "Your new like couldn't be created. Please check the form."
+      flash[:alert] = "You can't like this, you most likely already like it."
       redirect_back(fallback_location: root_path)
     end
   end

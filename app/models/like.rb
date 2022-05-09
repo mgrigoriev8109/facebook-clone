@@ -19,5 +19,7 @@ class Like < ApplicationRecord
   belongs_to :like_provider, class_name: "User"
   has_many :notifications, as: :notification_provider
 
+  validates_uniqueness_of :like_provider_id, scope: :liked_item
+
   accepts_nested_attributes_for :notifications
 end
