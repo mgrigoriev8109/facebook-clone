@@ -20,15 +20,17 @@
       <% comments = Comment.where(post_id: post.id).sort_by(&:created_at).reverse %>
 
       <% comments.each do |comment| %>
-        <%= User.find(comment.user_id).username %> commented: <%= comment.body %> at: <%= comment.created_at %>
-        <% if comment.user_id == current_user.id %>
-          <%= link_to "Delete comment", comment_path(comment), data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"} %>
-        <% else %>
-          <%= render "likes/new_likes", liked_item: comment %>
-        <% end %>
-        <%= render "likes/all_likes", liked_item: comment %>
+        <div class="comment" >
+          <%= User.find(comment.user_id).username %> commented: <%= comment.body %> at: <%= comment.created_at %>
+          <% if comment.user_id == current_user.id %>
+            <%= link_to "Delete comment", comment_path(comment), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"} %>
+          <% else %>
+            <%= render "likes/new_likes", liked_item: comment %>
+          <% end %>
+          <%= render "likes/all_likes", liked_item: comment %>
+        </div>
       <% end %>
    <% end %>
   <% end %>
