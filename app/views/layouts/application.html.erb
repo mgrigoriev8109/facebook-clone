@@ -12,11 +12,11 @@
   </head>
 
   <body>
-    <h1 class="text-3xl font-bold underline">
+    <h1 class="text-center text-3xl font-bold underline">
       openDevBook
     </h1>
   
-    <header id ="header">
+    <header class="text-center">
       <%= link_to "Sign In", new_user_session_path %>
       <%= link_to "Sign Up", new_user_registration_path %>
       <%= link_to "Sign Out", destroy_user_session_path %>
@@ -25,7 +25,7 @@
       <%= yield %>
     </main>
 
-    <footer id="footer">
+    <footer class="text-center">
       <%= link_to "News Feed", new_post_path %>
       <%= link_to "All Users", users_path %>
       <%= link_to "User Profile", current_user %>
