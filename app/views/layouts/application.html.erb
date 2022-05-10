@@ -11,35 +11,30 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-slate-50 flex flex-row">  
-    <nav class="text-center">
-      <%= link_to "News Feed", new_post_path, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "User Profile", current_user, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "All Users", users_path, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "Friendship Requests", friendship_requests_path, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "Friendships", friendships_path, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "Notifications", notifications_path, class: "px-3 hover:bg-slate-300 rounded" %>
-    </nav>
+  <body>  
     <main>
-    <h1 class="text-slate-700 text-center text-3xl font-bold underline">
-      openDevBook
-    </h1>
-    
-    <%= yield %>
-    </main>
+      <header>
+        <nav>
+          <% if current_user %>
+            <%= link_to "News Feed", new_post_path %>
+            <%= link_to "All Users", users_path %>
+            <%= link_to "Friendship Requests", friendship_requests_path %>
+            <%= link_to "Friendships", friendships_path %>
+            <%= link_to "Notifications", notifications_path %>
+            <h1>openDevBook</h1>
+            <%= link_to "User Profile", current_user %>      
+            <%= link_to "Sign Out", destroy_user_session_path %>
+          <% end %>
+        </nav>
 
-    <header class="text-center">
-      <%= link_to "Sign In", new_user_session_path, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "Sign Up", new_user_registration_path, class: "px-3 hover:bg-slate-300 rounded" %>
-      <%= link_to "Sign Out", destroy_user_session_path, class: "px-3 hover:bg-slate-300 rounded" %>
-       
-      
+      </header>
+      <%= yield %>
       <% if flash[:notice] %>
         <p class="notice"><%= flash[:notice] %></p>
       <% end %>
       <% if flash[:alert] %>
         <p class="alert"><%= flash[:alert] %></p>
       <% end %>
-    </header>
+    </main>
   </body>
 </html>
