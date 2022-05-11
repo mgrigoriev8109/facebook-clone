@@ -14,7 +14,7 @@
   <body class="h-full w-full bg-slate-100">  
     <nav class="bg-gray-800 flex items-center justify-between h-16">
 
-      <div class="flex-1 flex items-left justify-left sm:items-stretch sm:justify-start">
+      <div class="flex items-left justify-left sm:items-stretch sm:justify-start">
         <% if current_user %>
           <%= link_to "News Feed", new_post_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
           <%= link_to "All Users", users_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
@@ -22,9 +22,9 @@
           <%= link_to "Friend Requests", friendship_requests_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
         <% end %>
       </div>
-      <h1 class= "flex-1 text-center text-5xl font-bold text-gray-300 flex-none">openDevBook</h1>
+      <h1 class= "text-center text-5xl font-bold text-gray-300 flex-none">openDevBook</h1>
 
-      <div class="flex-1 flex items-right justify-right sm:items-stretch sm:justify-end">
+      <div class="flex justify-items-end justify-end">
         <% if current_user %>
           <%= link_to "Notifications", notifications_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
           <%= link_to "User Profile", current_user, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>      
