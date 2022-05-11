@@ -1,23 +1,24 @@
 <% unless posts.nil? %>
   <div class="flex flex-col">
     <% posts.each do |post| %>
-      <div>
+      <div class="flex flex-col justify-center align-center">
         <%= User.find(post.user_id).username %> posted: 
-        <%= post.body %> at: <%= post.created_at %>
+        <div>
+          <%= post.body %> at: <%= post.created_at %>
 
-        <% if post.user_id == current_user.id %>
-          <%= link_to "Delete post", post_path(post), data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"} %>
-        <% else %>
-          <%= render "likes/new_likes", liked_item: post %>
-        <% end %>
+          <% if post.user_id == current_user.id %>
+            <%= link_to "Delete post", post_path(post), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"} %>
+          <% else %>
+            <%= render "likes/new_likes", liked_item: post %>
+          <% end %>
+          <%= render "likes/all_likes", liked_item: post %>
+        </div>
 
-        <%= render "likes/all_likes", liked_item: post %>
         <%= render "comments/new_comments", post: post %>
     
         <% comments = Comment.where(post_id: post.id).sort_by(&:created_at).reverse %>
-
         <% comments.each do |comment| %>
           <%= User.find(comment.user_id).username %> commented: <%= comment.body %> at: <%= comment.created_at %>
           <% if comment.user_id == current_user.id %>
