@@ -1,10 +1,13 @@
-<p>Make a post!</p>
-<%= form_with scope: :post, url: posts_path do |form| %>
-  <div>
-    <%= form.text_field :body %>
-  </div>
+<div class="flex w-full justify-center">
+  <%= form_with scope: :post, url: posts_path, class: "w-1/3 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
+    <div class="mb-4">
+      <%= form.label :body, "New Post", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :body, autofocus: true, autocomplete: "Here's something exciting I learned about Open Source", class: "resize-y rounded-md text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Here's something exciting I learned about Open Source" %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <div>
+      <%= form.submit "Submit", class: "hover:cursor-pointer bg-slate-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
 <% end %>
+
+</div>
