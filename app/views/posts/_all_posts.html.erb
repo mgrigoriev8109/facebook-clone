@@ -1,24 +1,41 @@
 <% unless posts.nil? %>
-  <div class="flex flex-col">
+  <div class="w-1/2 flex flex-col justify-center bg-white shadow-md rounded px-4 pt-3 pb-4 mb-2">
     <% posts.each do |post| %>
-      <div class="flex flex-col justify-center align-center">
-        <%= User.find(post.user_id).username %> posted: 
-        <div>
-          <%= post.body %> at: <%= post.created_at %>
+        <div class="flex flex-col">
+          <div class="flex flex-col">
+            <div class="text-sm pb-1 mb-2 border-b-2 border-t-2">
+              <%= post.body %>
+            <div>
 
-          <% if post.user_id == current_user.id %>
-            <%= link_to "Delete post", post_path(post), data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"} %>
-          <% else %>
-            <%= render "likes/new_likes", liked_item: post %>
-          <% end %>
-          <%= render "likes/all_likes", liked_item: post %>
+            <div class="flex justify-between pb-1 mb-2 border-b-2">
+              <div class="flex items-center">
+                <img class="w-10 h-10 rounded-full mr-4" src="https://www.nicepng.com/png/full/270-2709350_smiley-face-black-and-white-laughing-stick-figure.png" alt="Avatar of Jonathan Reinink">
+                <div class="text-sm">
+                  <p class="text-gray-600"><%= User.find(post.user_id).username %> posted</p>
+                  <p class="text-gray-600">on <%= post.created_at.strftime('%B') %> <%= post.created_at.day %></p>
+                </div>
+              </div>
+              
+              <div>
+                <% if post.user_id == current_user.id %>
+                  <%= link_to "Delete", post_path(post), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"}, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold pt-1 py-1 px-1 border border-gray-400 rounded shadow" %>
+                <% else %>
+                  <%= render "likes/new_likes", liked_item: post %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="text-sm">
+              <%= render "likes/all_likes", liked_item: post %>
+            </div>
+          </div>
         </div>
 
-        <%= render "comments/new_comments", post: post %>
-        <%= render "comments/all_comments", post: post %>
-      </div>
+      <%= render "comments/new_comments", post: post %>
+      <%= render "comments/all_comments", post: post %>
+
     <% end %>
   </div>
 <% end %>

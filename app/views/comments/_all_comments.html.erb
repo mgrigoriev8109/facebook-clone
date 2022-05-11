@@ -1,12 +1,33 @@
-<% comments = Comment.where(post_id: post.id).sort_by(&:created_at).reverse %>
-<% comments.each do |comment| %>
-  <%= User.find(comment.user_id).username %> commented: <%= comment.body %> at: <%= comment.created_at %>
-  <% if comment.user_id == current_user.id %>
-    <%= link_to "Delete comment", comment_path(comment), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"} %>
-  <% else %>
-    <%= render "likes/new_likes", liked_item: comment %>
+<div class="flex flex-col items-center w-full odd:bg-white even:bg-slate-100">
+  <% comments = Comment.where(post_id: post.id).sort_by(&:created_at).reverse %>
+  <% comments.each do |comment| %>
+    <div class="flex flex-col w-2/3">
+      <div class="flex flex-col bg-slate-100 shadow-md rounded px-4 pt-3 pb-4 mb-2">
+
+        <div class="flex justify-between pb-1 mb-2 border-b-2">
+          <div class="flex items-center">
+            <img class="w-10 h-10 rounded-full mr-4" src="https://www.nicepng.com/png/full/270-2709350_smiley-face-black-and-white-laughing-stick-figure.png" alt="Avatar of Jonathan Reinink">
+            <div class="text-xs">
+              <p><%= User.find(comment.user_id).username %>: <%= comment.body %></p>
+            </div>
+          </div>
+
+          <div>
+            <% if comment.user_id == current_user.id %>
+              <%= link_to "Delete", comment_path(comment), data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"}, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold pt-1 py-1 px-1 border border-gray-400 rounded shadow" %>
+            <% else %>
+              <%= render "likes/new_likes", liked_item: comment %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="text-sm">
+          <%= render "likes/all_likes", liked_item: comment %>
+        </div>
+
+      </div>
+    </div>
   <% end %>
-  <%= render "likes/all_likes", liked_item: comment %>
-<% end %>
+</div>
