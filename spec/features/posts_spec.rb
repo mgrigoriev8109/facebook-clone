@@ -15,7 +15,7 @@ RSpec.describe "Post Integration Tests", type: :system do
     login_as(user_1) 
     visit root_path
     fill_in 'post[body]', with: 'Here is a post by current_user.'
-    click_on 'Save Post'
+    click_on 'Submit'
 
     expect(page).to have_content('Here is a post by current_user.')
   end
@@ -24,7 +24,7 @@ RSpec.describe "Post Integration Tests", type: :system do
     login_as(user_2, :scope => :user) 
     visit root_path
     fill_in 'post[body]', with: 'Here is a post by the person who sent the friendship request.'
-    click_on 'Save Post'
+    click_on 'Submit'
     visit users_path
     click_on user_1.username
     click_on 'Request Friendship'
@@ -32,7 +32,7 @@ RSpec.describe "Post Integration Tests", type: :system do
 
     login_as(user_1, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit root_path
     #user_2 is now the 'friendship_recipient', since user_1 provided the friendship by accepting it
 
@@ -49,10 +49,10 @@ RSpec.describe "Post Integration Tests", type: :system do
 
     login_as(user_3, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit root_path
     fill_in 'post[body]', with: 'Here is a post by the person who accepted the users friendship request.'
-    click_on 'Save Post'
+    click_on 'Submit'
     click_on "Sign Out"
     
     login_as(user_1, :scope => :user)

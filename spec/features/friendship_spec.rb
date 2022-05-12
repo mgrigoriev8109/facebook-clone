@@ -19,7 +19,7 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
     login_as(user_2, :scope => :user)
 
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit friendships_path
 
     expect(page).to have_content("#{user_1.username}")
@@ -32,7 +32,7 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
     click_on "Sign Out"
     login_as(user_2, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit friendships_path
 
     click_on "Remove Friendship"

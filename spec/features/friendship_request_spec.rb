@@ -39,7 +39,7 @@ RSpec.describe 'Friendship Integration Tests', type: :system do
     click_on 'Request Friendship'
 
     visit friendship_requests_path
-    click_on "Reject Request"
+    click_on "Reject"
     page.accept_alert
     visit friendship_requests_path
 

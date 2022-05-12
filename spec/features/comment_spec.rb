@@ -16,9 +16,11 @@ RSpec.describe "Comment Integration Tests", type: :system do
     login_as(user_1) 
     visit root_path
     fill_in 'post[body]', with: "Here is a post by #{user_1.username}."
-    click_on 'Save Post'
+    click_on 'Submit'
     fill_in 'comment[body]', with: "Here is a comment by #{user_1.username}."
-    click_on 'Create Comment'
+    within(".comment") do
+      click_on("Submit")
+    end
 
     expect(page).to have_content("Here is a comment by #{user_1.username}.")
   end
@@ -27,7 +29,7 @@ RSpec.describe "Comment Integration Tests", type: :system do
     login_as(user_1) 
     visit root_path
     fill_in 'post[body]', with: "Here is a post by #{user_1.username}."
-    click_on 'Save Post'
+    click_on 'Submit'
     visit users_path
     click_on user_2.username
     click_on 'Request Friendship'
@@ -35,10 +37,12 @@ RSpec.describe "Comment Integration Tests", type: :system do
 
     login_as(user_2, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit root_path
     fill_in 'comment[body]', with: "Here is a comment by #{user_2.username}."
-    click_on 'Create Comment'
+    within(".comment") do
+      click_on("Submit")
+    end
 
     expect(page).to have_content("Here is a comment by #{user_2.username}.")
   end
