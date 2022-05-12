@@ -1,7 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-
+  variants: {
+    extend: {
+      backgroundColor: ['responsive', 'odd', 'even', 'hover', 'focus'],
+      // ...
+      borderColor: ['focus-visible', 'first'],
+      // ...
+      textColor: ['visited'],
+    }
+  },
   content: [
     './app/components/**/*.{erb,html}',
     './app/helpers/**/*.rb',
