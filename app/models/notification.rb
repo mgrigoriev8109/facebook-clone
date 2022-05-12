@@ -17,4 +17,15 @@
 #
 class Notification < ApplicationRecord
   belongs_to :notification_provider, polymorphic: true
+
+  def user_has_new_notifications
+    notifications = Notification.all
+    any_unviewed_notifications = false
+    notifications.each do |notification|
+      if notification.recipient_id == current_user.id && notification.notification_viewed == false
+        any_unviewed_notifications = true
+      end
+    end
+    any_unviewed_notifications
+  end
 end

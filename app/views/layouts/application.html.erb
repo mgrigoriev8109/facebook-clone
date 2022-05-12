@@ -29,7 +29,7 @@
 
           <%= link_to "My Profile", current_user, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>      
 
-          <% if @change_notification_color %>
+          <% if Notification.user_has_new_notifications %>
 
             <%= link_to "Notifications", notifications_path, class: "text-center text-red-400 hover:bg-gray-700 hover:text-red-200 px-3 py-2 rounded-md text-sm font-medium" %>
 
