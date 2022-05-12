@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @comment.notifications.build
     @like = Like.new
     @like.notifications.build
+    @change_notification_color = find_unviewed_notifications
   end
 
   def create
@@ -60,5 +61,16 @@ class PostsController < ApplicationController
       newsfeed_ids.concat(Friendship.where(friendship_provider_id: current_user.id).pluck(:friendship_recipient_id))
       newsfeed_ids.push(current_user.id)
       newsfeed_ids
+    end
+
+    def find_unviewed_notifications
+      notifications = Notification.all
+      any_unviewed_notifications = false
+      notifications.each do |notification|
+        if notification.recipient_id == current_user.id && notification.notification_viewed == false
+          any_unviewed_notifications = true
+        end
+      end
+      any_unviewed_notifications
     end
 end
