@@ -17,11 +17,12 @@
           </div>
           <p class="text-sm text-slate-500 truncate"><%= user.email %></p>
         </div>
+        
         <div>
-        <%= link_to "Remove Friendship", friendship_path(friendship), data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                }, class: "hover:cursor-pointer bg-slate-500 hover:bg-slate-800 text-white p-1 rounded focus:outline-none focus:shadow-outline" %>
+          <%= link_to "Remove Friendship", friendship_path(friendship), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "hover:cursor-pointer bg-slate-500 hover:bg-slate-800 text-white p-1 rounded focus:outline-none focus:shadow-outline" %>
         </div>
       </li>
     <% end %>
