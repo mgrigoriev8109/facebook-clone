@@ -1,6 +1,8 @@
 <ul>
   <% @notifications.each do |notification| %>
     <% if notification.recipient_id == current_user.id %>
+      <% notification.mark_as_viewed %>
+
       <li>
         <%= notification.body %>
         <%= link_to "Delete Notification", notification_path(notification), data: {

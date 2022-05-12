@@ -28,4 +28,15 @@ class User < ApplicationRecord
   has_many :comments
   has_many :friendship_requests
   has_many :likes
+
+  def user_has_new_notifications
+    notifications = Notification.all
+    any_unviewed_notifications = false
+    notifications.each do |notification|
+      if notification.recipient_id == self.id && notification.notification_viewed == false
+        any_unviewed_notifications = true
+      end
+    end
+    any_unviewed_notifications
+  end
 end
