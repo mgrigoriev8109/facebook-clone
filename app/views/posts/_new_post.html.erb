@@ -4,7 +4,7 @@
 
       <%= form.label :body, "New Post", class: "text-center block text-gray-700 text-sm font-bold mb-2" %>
       <div class="flex">
-      <%= form.text_area :body, autofocus: true, autocomplete: "Here's something exciting I learned about Open Source", class: "resize-y rounded-md text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Here's something exciting I learned about Open Source" %>
+      <%= form.text_area :body, :value => current_user.get_recent_repo, autofocus: true, autocomplete: "Here's something exciting I learned about Open Source", class: "resize-y rounded-md text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Here's something exciting I learned about Open Source" %>
 
       <%= form.submit "Submit", class: "hover:cursor-pointer bg-slate-500 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
      </div>

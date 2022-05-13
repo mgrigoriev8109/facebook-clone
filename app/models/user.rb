@@ -1,3 +1,7 @@
+require 'faraday'
+require 'faraday/net_http'
+require "base64"
+Faraday.default_adapter = :net_http
 # == Schema Information
 #
 # Table name: users
@@ -10,6 +14,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  token                  :string
 #  uid                    :string
 #  username               :string
 #  created_at             :datetime         not null
@@ -45,8 +50,9 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.token = auth.credentials.token
       user.email = auth.info.email
-      #user.provider = auth.provider
+      user.provider = auth.provider
       user.login = auth.extra.raw_info.login
       user.password = Devise.friendly_token[0, 20]
       user.username = auth.info.name   # assuming the user model has a name
@@ -58,10 +64,16 @@ class User < ApplicationRecord
   end
 
   def get_recent_repo
-    client = Octokit::Client.new
-    user = client.user 'mgrigoriev8109'
-    repos = user.rels[:repos].get.data
-    repos.sort_by(&:created_at)
-    repos.first
+    if self.provider == "github"
+      client = Octokit::Client.new(:access_token => self.token)
+      user_repos = client.user.rels[:repos].get.data
+      sorted_repos = user_repos.sort_by(&:created_at)
+      newest_repo_id = sorted_repos.last.id
+      encoded_repo_readme = client.readme newest_repo_id
+      decoded_readme = Base64.decode64(encoded_repo_readme.content)
+      readme_sentence = decoded_readme.split('.')[0]
+      formatted_sentence = readme_sentence.delete!('#') 
+      formatted_sentence.prepend("Let me know if you want to contribute to the most recent open-source project I created:")
+    end
   end
 end
