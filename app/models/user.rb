@@ -5,6 +5,7 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  login                  :string
 #  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -46,7 +47,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       #user.provider = auth.provider
-      #user.uid = auth.id
+      user.login = auth.extra.raw_info.login
       user.password = Devise.friendly_token[0, 20]
       user.username = auth.info.name   # assuming the user model has a name
       #user.image = auth.info.image # assuming the user model has an image
@@ -54,5 +55,13 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def get_recent_repo
+    client = Octokit::Client.new
+    user = client.user 'mgrigoriev8109'
+    repos = user.rels[:repos].get.data
+    repos.sort_by(&:created_at)
+    repos.first
   end
 end
