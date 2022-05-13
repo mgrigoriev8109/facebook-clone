@@ -1,33 +1,37 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, html: {'data-turbo' => "false"}, url: registration_path(resource_name)) do |f| %>
+<div class="h-full w-full max-w-xs mx-auto">
+ <%= form_for(resource, as: resource_name, html: {'data-turbo' => "false"}, url: registration_path(resource_name), html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"}) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "email" %>
-  </div>
+    <h2 class="text-center text-gray-700 text-lg font-bold mb-2">Sign Up</h2>
+    <div class="mb-4">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "username" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "test@gmail.com" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field mb-4">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+    <div class="flex items-center justify-between">
+      <%= f.submit "Sign up", class: "bg-slate-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+
+  <div class="flex justify-center">
+    <%= button_to "Sign Up using Github", user_github_omniauth_authorize_path, data: {turbo: "false"}, class: "bg-slate-300 hover:bg-slate-800 text-slate-800 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
-<% end %>
+</div>
 
