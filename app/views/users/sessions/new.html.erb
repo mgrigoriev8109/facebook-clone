@@ -1,25 +1,22 @@
-<h2>Log in</h2>
+<div class="h-full w-full max-w-xs mx-auto">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"}) do |f| %>
+    <h2 class="text-center text-gray-700 text-lg font-bold mb-2">Log in</h2>
+    <div class="mb-4">
+      <%= f.label :email, "Email", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "test@gmail.com", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "test@gmail.com" %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="mb-6">
+      <%= f.label :password, "Password", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.password_field :password, autocomplete: "123456", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "123456" %>
+    </div>
+    <div class="flex items-center justify-between">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <%= f.submit "Log in", class: "hover:cursor-pointer bg-slate-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "bg-slate-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
     </div>
   <% end %>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 <%= button_to "Sign in with Github", user_github_omniauth_authorize_path %><%= render "users/shared/links" %>

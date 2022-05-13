@@ -17,4 +17,8 @@
 #
 class Notification < ApplicationRecord
   belongs_to :notification_provider, polymorphic: true
+
+  def mark_as_viewed
+    self.update(notification_viewed: true)
+  end
 end

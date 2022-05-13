@@ -1,6 +1,5 @@
-<p>Liked by:
+<p class="text-sm text-gray-600">Liked by:</p>
 <% likes = liked_item.likes.includes(:like_provider) %>
 <% likes.each do |like| %>
-  <%= like.like_provider.username %>
+  <p><%= like.like_provider.username %></p>
 <% end %>
-</p>

@@ -32,4 +32,14 @@ class User < ApplicationRecord
   has_many :likes
 
   devise :omniauthable, omniauth_providers: %i[github]
+  def user_has_new_notifications
+    notifications = Notification.all
+    any_unviewed_notifications = false
+    notifications.each do |notification|
+      if notification.recipient_id == self.id && notification.notification_viewed == false
+        any_unviewed_notifications = true
+      end
+    end
+    any_unviewed_notifications
+  end
 end

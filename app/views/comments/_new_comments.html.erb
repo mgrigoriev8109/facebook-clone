@@ -1,28 +1,28 @@
-<%= form_with model: @comment, local: true do |form| %>
-  <div>
-    <%= form.hidden_field :post_id, value: post.id %>
-  </div>
+<div class="flex comment">
+  <%= form_with model: @comment, local: true, class: "w-full bg-slate-300 shadow-md rounded px-4 pt-3 pb-4 mb-2" do |form| %>
+    <div>
+      <%= form.hidden_field :post_id, value: post.id %>
+    </div>
 
-  <div>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-  </div>
+    <div>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
 
-  <div>
-    <%= form.label :body, 'Comment on post:' %><br>
-    <%= form.text_area :body %>
-  </div>
-  <% unless post.user_id == current_user.id %>
-    <%= form.fields_for :notifications, Notification.new do |notification_form| %>
-      <% notification_message = "#{current_user.username} commented on your post '#{post.body[0, 10]}...'!"%>
+    <div class="flex">
+      <%= form.text_area :body, autofocus: true, class: "resize-y rounded-md text-xs shadow appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "New comment..."  %>
 
-      <%= notification_form.hidden_field :recipient_id, value: post.user_id %>
-      
-      <%= notification_form.hidden_field :body, value: notification_message %>
+    <% unless post.user_id == current_user.id %>
+      <%= form.fields_for :notifications, Notification.new do |notification_form| %>
+        <% notification_message = "#{current_user.username} commented on your post '#{post.body[0, 10]}...'!"%>
+
+        <%= notification_form.hidden_field :recipient_id, value: post.user_id %>
+        
+        <%= notification_form.hidden_field :body, value: notification_message %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    
+      <%= form.submit "Submit", class: "hover:cursor-pointer bg-slate-500 hover:bg-slate-800 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"  %>
+    </div>
+  <% end %>
+</div>

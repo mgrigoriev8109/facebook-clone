@@ -126,10 +126,18 @@ t.references :liked_content, polymorphic: true
 
 #### Implementation
 
-- Implement OmniAuth github for login
-- Implement profile pictures, active storage and aws to store them
-- Style using Tailwind
-- Add in a react component
+
+- Style sign-in page
+- Style registration page
+- Style New post form
+- Style new comment form
+- Style likes
+- Style all posts display
+- Style all comments display
+- Style the rest of Newsfeed page
+- Style the rest of the User Account page
+- Style Friendship page
+- Style Notifications page
 - Deploy
 - Populate with fake friends, fake posts, fake comments, fake likes
 - Test with family members

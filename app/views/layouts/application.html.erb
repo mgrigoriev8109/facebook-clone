@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full w-full">
   <head>
-    <title>FacebookClone</title>
+    <title>openDevBook</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header id ="header">
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Sign Up", new_user_registration_path %>
-      <%= link_to "Sign Out", destroy_user_session_path %>
-    </header>
-    <main id="main">
-      <%= yield %>
-    </main>
+  <body class="h-full w-full bg-slate-100">  
+    <nav class="bg-gray-800 flex items-center h-16 mb-10">
 
-    <footer id="footer">
-      <%= link_to "News Feed", new_post_path %>
-      <%= link_to "All Users", users_path %>
-      <%= link_to "User Profile", current_user %>
-      <%= link_to "Friendship Requests", friendship_requests_path %>
-      <%= link_to "Friendships", friendships_path %>
-      <%= link_to "Notifications", notifications_path %>
-      
+      <div class="flex-1 flex items-left justify-left sm:items-stretch sm:justify-start">
+        <% if current_user %>
+          <%= link_to "News Feed", new_post_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "All Users", users_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Friends", friendships_path, class: "flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Friend Requests", friendship_requests_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+        <% end %>
+      </div>
+      <h1 class= "flex-1 text-center text-5xl font-bold text-gray-300 flex-none">openDevBook</h1>
+
+      <div class="flex-1 flex justify-items-end justify-end">
+        <% if current_user %>
+
+          <%= link_to "My Profile", current_user, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>      
+
+          <% if current_user.user_has_new_notifications %>
+
+            <%= link_to "Notifications", notifications_path, class: "text-center text-red-400 hover:bg-gray-700 hover:text-red-200 px-3 py-2 rounded-md text-sm font-medium" %>
+
+          <% else %>
+            <%= link_to "Notifications", notifications_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <% end %>
+          <%= link_to "Sign Out", destroy_user_session_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+
+        <% end %>
+      </div>
+    </nav>
+    <main class= "h-full w-full flex flex-col items-center">
+      <%= yield %>
+
       <% if flash[:notice] %>
-        <p class="notice"><%= flash[:notice] %></p>
+        <p class="notice text-center"><%= flash[:notice] %></p>
       <% end %>
       <% if flash[:alert] %>
-        <p class="alert"><%= flash[:alert] %></p>
+        <p class="alert text-center"><%= flash[:alert] %></p>
       <% end %>
-    </footer>
+    </main>
   </body>
 </html>

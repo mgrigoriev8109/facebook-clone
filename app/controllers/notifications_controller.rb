@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.all
+    @notifications = Notification.all.includes(:notification_provider)
     @requests = FriendshipRequest.all
   end
 

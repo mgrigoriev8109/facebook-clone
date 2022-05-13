@@ -31,7 +31,7 @@ RSpec.describe 'Notification Integration Tests', type: :system do
 
     login_as(user_2, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     click_on "Sign Out"
 
     login_as(user_1, :scope => :user)

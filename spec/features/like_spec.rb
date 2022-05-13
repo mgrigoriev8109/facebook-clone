@@ -16,7 +16,7 @@ RSpec.describe "Like Integration Tests", type: :system do
     login_as(user_1) 
     visit root_path
     fill_in 'post[body]', with: "Here is a post by #{user_1.username}."
-    click_on 'Save Post'
+    click_on 'Submit'
     visit users_path
     click_on user_2.username
     click_on 'Request Friendship'
@@ -24,20 +24,22 @@ RSpec.describe "Like Integration Tests", type: :system do
 
     login_as(user_2, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit root_path
-    click_on 'Like'
+    click_on "Like"
 
-    expect(page).to have_content("Liked by: #{user_2.username}")
+    expect(page).to have_content("Liked by:\n#{user_2.username}")
   end
 
   it 'Viewing a like by user_3 of user_1s comment' do
     login_as(user_1) 
     visit root_path
     fill_in 'post[body]', with: "Here is a post by #{user_1.username}."
-    click_on 'Save Post'
+    click_on 'Submit'
     fill_in 'comment[body]', with: "Here is a comment by #{user_1.username}."
-    click_on 'Create Comment'
+    within(".comment") do
+      click_on("Submit")
+    end
     visit users_path
     click_on user_3.username
     click_on 'Request Friendship'
@@ -45,12 +47,11 @@ RSpec.describe "Like Integration Tests", type: :system do
 
     login_as(user_3, :scope => :user)
     visit friendship_requests_path
-    click_on "Accept Friendship"
+    click_on "Accept"
     visit root_path
-    within(".comment") do
+    within(".made-comment") do
       click_on("Like")
     end
-
-    expect(page).to have_content("Liked by: #{user_3.username}")
+    expect(page).to have_content("Liked by:\n#{user_3.username}")
   end
 end

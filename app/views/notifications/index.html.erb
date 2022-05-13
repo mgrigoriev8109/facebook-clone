@@ -1,11 +1,15 @@
-<ul>
+<ul class="bg-white shadow-md rounded px-4 pt-3 pb-4 mb-2 divide-y divide-slate-200">
+  <h1 class= "text-center block text-gray-700 text-sm font-bold mb-2">Notifications</h1>
+
   <% @notifications.each do |notification| %>
     <% if notification.recipient_id == current_user.id %>
-      <li>
-        <%= notification.body %>
-        <%= link_to "Delete Notification", notification_path(notification), data: {
+      <% notification.mark_as_viewed %>
+
+      <li class="flex justify-between py-4 first:pt-0 last:pb-0 ">
+        <p class="text-slate-500 truncate pt-1 py-1 px-1 "><%= notification.body %></p>
+        <%= link_to "Delete", notification_path(notification), data: {
         turbo_method: :delete,
-        turbo_confirm: "Are you sure?"} %>
+        turbo_confirm: "Are you sure?"}, class: "hover:cursor-pointer bg-white hover:bg-gray-100 text-gray-800 font-semibold pt-1 py-1 px-1 rounded ml-1" %>
       </li>
     <% end %>
   <% end %>

@@ -61,4 +61,5 @@ class PostsController < ApplicationController
       newsfeed_ids.push(current_user.id)
       newsfeed_ids
     end
+
 end
