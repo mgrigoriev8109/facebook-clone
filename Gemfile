@@ -12,6 +12,10 @@ gem "sprockets-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
+gem 'faraday'
+# Use octokit to access github api
+gem "octokit", "~> 4.0"
+
 # Use devise gem
 gem 'devise'
 
