@@ -1,6 +1,6 @@
-## Facebook Clone
+## openDevBook
 
-A Ruby on Rails clone of the social media website Facebook. 
+A Ruby on Rails social media app for open-source contributors, based off of Facebook. Features include friends, friendship requests, notifications, posts, comments, and likes. 
 
 ### Demo
 
@@ -8,136 +8,35 @@ This will be a gif of the website
 
 ### Live Version
 
-You can find a [live version of the Facebook Clone here]. Create an account using using your email or by signing-up with your GitHub account, 
+You can find a [live version of openDevBook here](www.opendevbook.com). 
 
-*alternatively* 
+To test the most this app has to offer, `Log in with GitHub`, authentication for which is implemented using [Omniauth](https://github.com/omniauth/omniauth). This will auto-fill an initial post for you using GitHub's API, typing out a description of the most recent GitHub public project you're working on!
 
-Log in as a test user using the following credentials:
-- email: bob@gmail.com
-- password: bobbob
+You'll also receive an automatic friend request from the test user - Jebediah Johnson, which you can accept in the `Friend Requests` tab.
 
-### Using the App
+*or*
 
-**Setting up your account**
-- Sign up with a personal email through the Devise gem, or with a GitHub account through the OmniAuth gem
-- Receive email upon sign-up by combining ActionMailer with the Twilio SendGrid add-on
-- Upload photos to profile picture using AWS S3 with Active Storage.
+Create an account by clicking `Sign Up` and filling out the form, authentication for which is implemented using [Devise](https://github.com/heartcombo/devise/). Just the same as a GitHub account creation, this will generate an automatic friend request you can accept. 
 
-**Making friends**
-- Send friend requests to other users
-- Receive a notification upon getting a friend request
-- Requests must be accepted to become friends
-- Unfriend users
+*or*
 
-**Posting, Commenting, Notifications, Liking**
-- View what your friends have to say on your news feed
-- Create posts from your profile page
-- Comment on posts, or edit/delete comments
-- Like and Unlike comments or posts
-- Receive notifications when users like or respond to your posts/comments
+Log in with the test user's data:
+email: test@gmail.com
+password: 123456
 
 ### Development Features
-- Utilize Turbo to increase performance 
-- Bulma used for styling
--  and comprehensive integration testing performed through the Capybara gem, with Guard gem running in the background to provide continuous test feedback
-- PostgreSQL used in both development and production
+
+- Automated integration tested using [RSPec](https://github.com/rspec/rspec-rails) and [Capybara](https://github.com/teamcapybara/capybara) to perform tests, alongside [Guard](https://github.com/guard/guard) to re-run tests with every code change, and [FactoryBot](https://github.com/thoughtbot/factory_bot)/[Faker](https://github.com/faker-ruby/faker) to generate test data. 
+- GitHub API utilized with to request data regarding GitHub user's most recent repository, and the first sentence of that repository's readme. 
+- Performance improved by resolving N+1 queries with eager loading. These were monitored through both the Linux terminal and with [Bullet](https://github.com/flyerhzm/bullet0)
+- Behaviour driven development adhered to from beginning to end by planning data architecture (models, associations, schemas) around the user's actions and keeping user experience in mind with every added feature. 
+- Styling performed with the [Tailwind CSS](https://tailwindcss.com/) framework to reduce cycle time. Tailwind was effortless to pick up and use having already acquired a solid understanding of the CSS concepts it utilizes. 
+- PostgreSQL used exclusively from development to production over previously used SQLite to perform more complex queries
+
+### Currently In Development
+- Utilize AWS3 to host user uploaded profile pictures, facilitated through Active Storage
 
 ### Reflections
+This project solidified my comfort planning, testing, and debugging larger scale Rails applications. I didn't run into any issues which I couldn't resolve by perusing documentation, conducting research, or `debug`ging my way through the MVC structure or interacting with the `rails console`. I believe part of this is also due to the planning I did prior to beginning the project, and another part is due to the quality of the integration tests I wrote. 
 
-### Software Development Life Cycle
-
-#### Gathering and Analysis of Requirements
-
-I put myself in the shoes of the user, and thought about every single aspect of the social media app Facebook that I would use. I listed them in the above section, *Using This App*. Next I thought about these from the perspective of a developer in regards to which gems and which programming concepts would assist me in implementing these features. 
-
-#### Design
-
-User
-has_one :profile_picture
-has_many :friendships
-has_many :friendship_requests
-has_many :posts
-has_many :comments
-has_many :notifications
-
-#schema
-t.string :username
-
----
-#model ProfilePicture
-belongs_to :user
-
-#schema
-t.belongs_to :user
-
----
-#model Friendship
-belongs_to :friendship_provider, class_name="User"
-belongs_to :friendship_recipient, class_name="User"
-
-#schema
-t.belongs_to :friendship_provider
-t.belongs_to :friendship_recipient
-
----
-#model FriendshipRequest
-belongs_to :request_provider, class_name="User"
-belongs_to :request_recipient, class_name="User"
-
-#schema
-t.belongs_to :request_provider
-t.belongs_to :request_recipient
-
----
-#model Post
-belongs_to :user
-has_many :comments
-has_many :likes, as: :liked_content
-
-#schema
-t.belongs_to :user
-t.text :body
-
----
-#model Comment
-belongs_to :post
-has_many :likes, as: :liked_content
-
-#schema
-t.belongs_to :post
-t.text :body
-
----
-#model Notification
-belongs_to :user
-
-#schema
-t.belongs_to :user
-t.boolean :notification_viewed
-
----
-#model Like
-belongs_to :liked_content, polymorphic: true
-
-#schema
-t.references :liked_content, polymorphic: true
-
----
-
-#### Implementation
-
-
-- Style sign-in page
-- Style registration page
-- Style New post form
-- Style new comment form
-- Style likes
-- Style all posts display
-- Style all comments display
-- Style the rest of Newsfeed page
-- Style the rest of the User Account page
-- Style Friendship page
-- Style Notifications page
-- Deploy
-- Populate with fake friends, fake posts, fake comments, fake likes
-- Test with family members
+All in all this project was a joy to work on, and I'm looking forward to continueing implementing features for it.

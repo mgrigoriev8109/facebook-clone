@@ -37,6 +37,8 @@ class User < ApplicationRecord
   has_many :friendship_requests
   has_many :likes
 
+  after_create_commit :generate_friendship_request
+  
   def user_has_new_notifications
     notifications = Notification.all
     any_unviewed_notifications = false
@@ -74,6 +76,14 @@ class User < ApplicationRecord
       readme_sentence = decoded_readme.split('.')[0]
       formatted_sentence = readme_sentence.delete!('#') 
       formatted_sentence.prepend("Let me know if you want to contribute to the most recent open-source project I created:")
+    end
+  end
+
+  private
+  def generate_friendship_request
+    unless User.all.length == 0
+      test_user_request = FriendshipRequest.new(request_provider_id: User.all.first.id, request_recipient_id: self.id)
+      test_user_request.save
     end
   end
 end
