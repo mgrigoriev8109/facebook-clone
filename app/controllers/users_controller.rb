@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: current_user.id)
+    @posts = Post.where(user_id: params[:id])
     @friendship_request = FriendshipRequest.new
     @comment = Comment.new
     @comment.notifications.build
