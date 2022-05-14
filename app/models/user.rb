@@ -81,8 +81,9 @@ class User < ApplicationRecord
 
   private
   def generate_friendship_request
-    unless User.all.length == 0
-      test_user_request = FriendshipRequest.new(request_provider_id: User.all.first.id, request_recipient_id: self.id)
+    unless User.all.length == 1
+      test_user = User.all.first
+      test_user_request = FriendshipRequest.new(request_provider_id: test_user.id, request_recipient_id: self.id)
       test_user_request.save
     end
   end
