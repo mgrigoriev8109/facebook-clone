@@ -1,8 +1,8 @@
 # Add configuration values here, as shown below.
 #
 # pusher_app_id: "2954"
- pusher_key: 47023c6ef35d9caa1bbe
- pusher_secret: 596e9034bf33dbd034317f5a83c1043869595839
+ pusher_key: 89cdd8b989db5e203d82
+ pusher_secret: 139faee851c4564ff7d9e33f004ed949d8f46ac8
 # stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
 # stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
 #
