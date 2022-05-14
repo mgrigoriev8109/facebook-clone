@@ -4,7 +4,7 @@ A Ruby on Rails social media app for open-source contributors, based off of Face
 
 ### Demo
 
-This will be a gif of the website
+<img src='opendevbook.gif' alt='devbook_demo'>
 
 ### Live Version
 
