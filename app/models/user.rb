@@ -1,7 +1,4 @@
-require 'faraday'
-require 'faraday/net_http'
 require "base64"
-Faraday.default_adapter = :net_http
 # == Schema Information
 #
 # Table name: users
@@ -66,11 +63,13 @@ class User < ApplicationRecord
   end
 
   def get_recent_repo
+    debugger
     if self.provider == "github"
       client = Octokit::Client.new(:access_token => self.token)
       user_repos = client.user.rels[:repos].get.data
       sorted_repos = user_repos.sort_by(&:created_at)
       newest_repo_id = sorted_repos.last.id
+      client.readme newest_repo_id 
       encoded_repo_readme = client.readme newest_repo_id
       decoded_readme = Base64.decode64(encoded_repo_readme.content)
       readme_sentence = decoded_readme.split('.')[0]

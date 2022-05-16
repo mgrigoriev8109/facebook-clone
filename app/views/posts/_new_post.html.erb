@@ -1,12 +1,12 @@
 
 <div class="flex w-full justify-center">
-  <%= form_with scope: :post, url: posts_path, class: "w-1/2 bg-slate-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
+  <%= form_with scope: :post, url: posts_path, class: "w-full sm:w-3/4 md:w-1/2 lg:w-1/2 bg-slate-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
 
       <%= form.label :body, "New Post", class: "text-center block text-gray-700 text-sm font-bold mb-2" %>
       <div class="flex">
       <%= form.text_area :body, :value => current_user.get_recent_repo, autofocus: true, autocomplete: "Here's something exciting I learned about Open Source", class: "resize-y rounded-md text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Here's something exciting I learned about Open Source" %>
 
-      <%= form.submit "Submit", class: "hover:cursor-pointer bg-slate-500 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= form.submit "Submit", class: "w-13 hover:cursor-pointer bg-slate-600 hover:bg-slate-800 text-white text-sm font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline" %>
      </div>
 <% end %>
 

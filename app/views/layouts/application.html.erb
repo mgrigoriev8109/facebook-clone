@@ -12,31 +12,31 @@
   </head>
 
   <body class="h-full w-full bg-slate-100">  
-    <nav class="bg-gray-800 flex items-center h-16 mb-10">
+    <nav class="w-full flex flex-col sm:flex-row bg-gray-800 items-center h-16 mb-10">
 
-      <div class="flex-1 flex items-left justify-left sm:items-stretch sm:justify-start">
+      <div class="w-full sm:w-1/3 bg-gray-800 flex-1 flex items-left justify-left sm:items-stretch sm:justify-start">
         <% if current_user %>
-          <%= link_to "News Feed", new_post_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to "All Users", users_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to "Friends", friendships_path, class: "flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to "Friend Requests", friendship_requests_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "News Feed", new_post_path, class: "w-1/4 flex items-center text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
+          <%= link_to "All Users", users_path, class: "w-1/4 flex items-center text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
+          <%= link_to "Friends", friendships_path, class: "w-1/4 flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
+          <%= link_to "Friend Requests", friendship_requests_path, class: "w-1/4 text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
         <% end %>
       </div>
-      <h1 class= "flex-1 text-center text-5xl font-bold text-gray-300 flex-none">openDevBook</h1>
+      <h1 class= "w-full sm:w-1/3 bg-gray-800 flex-1 text-center sm:text-xl md:text-2xl lg:text-5xl font-bold text-gray-300 flex-none">openDevBook</h1>
 
-      <div class="flex-1 flex justify-items-end justify-end">
+      <div class="w-full sm:w-1/3 bg-gray-800 flex-1 flex justify-items-end justify-end">
         <% if current_user %>
 
-          <%= link_to "My Profile", current_user, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>      
+          <%= link_to "My Profile", current_user, class: "w-1/3 text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>      
 
           <% if current_user.user_has_new_notifications %>
 
-            <%= link_to "Notifications", notifications_path, class: "text-center text-red-400 hover:bg-gray-700 hover:text-red-200 px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Notifications", notifications_path, class: "w-1/3 text-center text-red-400 hover:bg-gray-700 hover:text-red-200 px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
 
           <% else %>
-            <%= link_to "Notifications", notifications_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Notifications", notifications_path, class: "w-1/3 text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
           <% end %>
-          <%= link_to "Sign Out", destroy_user_session_path, class: "text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Sign Out", destroy_user_session_path, class: "w-1/3 text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs md:text-sm font-medium" %>
 
         <% end %>
       </div>
@@ -51,5 +51,14 @@
         <p class="alert text-center"><%= flash[:alert] %></p>
       <% end %>
     </main>
+
+    <script type="text/javascript"> //<![CDATA[
+      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
+      document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+    //]]></script>
+    <script language="JavaScript" type="text/javascript">
+      TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");
+    </script>
+    
   </body>
 </html>
